@@ -36,8 +36,9 @@ provide json
 
 eg: {
     
+    
+    "phoneNumber": 2432423424,
     "password": "ram",
-    "phoneNumber": 2432423424
   
 }
 
@@ -45,7 +46,7 @@ eg: {
 ---------------------------------- for booking slots-------------------------------------------------------------------------------------------
 app.post("/vr/api/v1/slots/booking/:_id")
 
-provide slot-id in params
+provide slot-id that you want to book in params
 
 eg:   http://localhost:8080/vr/api/v1/slots/booking/6344d191466adb76b49a0500
 
@@ -75,16 +76,16 @@ eg:  http://localhost:8080/vr/api/v1/slots?date=2022-06-04
 ---------------------------------------to get slots by date ------------------------------------------------------------
 app.get("/vr/api/v1/slots/:date")
 
-can query  by date as params
+can query slots by date as params
 
 eg: http://localhost:8080/vr/api/v1/slots/2022-06-04
 
 ----------------------------------------to update slots-----------------------------------------------------------------------------
 app.put("/vr/api/v1/slots/update/:_id")
 
-provide the id of the slot in params that need to be updated
+provide the id of the slot in params that needs to be updated
 
-and as json
+and as json the fields to be updated
 
 eg: {
     "doseBooked": "second dose"
