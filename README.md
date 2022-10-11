@@ -10,7 +10,6 @@ express
 TO start the application
 ----node server.js
 
-api end points
 
 
 user validations are done by jwt, provided in headers as X-access-TOken
