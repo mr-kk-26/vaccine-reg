@@ -1,6 +1,9 @@
 # Project Title
 
 vaccine registration
+built on mvc architecture
+Nodejs
+express
 
 
 
