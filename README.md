@@ -82,7 +82,7 @@ eg: http://localhost:8080/vr/api/v1/slots/2022-06-04
 ----------------------------------------to update slots-----------------------------------------------------------------------------
 app.put("/vr/api/v1/slots/update/:_id")
 
-prove the id of the slot in params that need to be updated
+provide the id of the slot in params that need to be updated
 
 and as json
 
