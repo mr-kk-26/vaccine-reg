@@ -9,7 +9,7 @@ add a .env file
 
 with  :   PORT,
           DB_URL,
-          SECRET,-----for---jwt
+          SECRET-----for---jwt
 
 
 
