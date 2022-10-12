@@ -7,9 +7,9 @@ express
 
 add a .env file 
 
-with  :   PORT
-          DB_URL
-          SECRET
+with  :   PORT,
+          DB_URL,
+          SECRET,-----for---jwt
 
 
 
