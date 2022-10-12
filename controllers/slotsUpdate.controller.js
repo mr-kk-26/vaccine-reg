@@ -30,6 +30,12 @@ exports.updateSlots = async (req, res)=>{
         if(user.doseBooked == "second dose"){
             slot.secondDose = slot.secondDose-1
         }
+        slot.userBooked.forEach((item, index, arr) => {
+            if (item == user._id) {
+              arr.splice(index, 1);
+            }
+          });
+        
 
     user.slotsBooked = [];
     user.doseBooked = "no";
@@ -64,6 +70,7 @@ exports.updateSlots = async (req, res)=>{
             newSlot.secondDose = newSlot.secondDose+1
             
         }
+        newSlot.userBooked.push(user._id)
         await user.save()
         await slot.save()
         

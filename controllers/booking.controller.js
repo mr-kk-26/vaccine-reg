@@ -34,6 +34,7 @@ exports.booking = async (req, res)=>{
         if(user.doseBooked == "first dose"){
             slot.firstDose = slot.firstDose+1
         }
+        slot.userBooked.push(user._id)
         
         
         slot.save();

@@ -11,7 +11,10 @@ const slotSchema = new mongoose.Schema({
   },
   secondDose: {
     type: Number
-  }
+  },
+  userBooked: [{
+    type: String
+}]
 },{versionkey : false});
 
 const slotModel = mongoose.model("slot", slotSchema);

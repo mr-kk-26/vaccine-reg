@@ -4,10 +4,10 @@
  * 
  */
 
-
+const {authJwt} = require("../middlewears");
 const UsersController = require("../controllers/getAllUsers.controller")
 
 
 module.exports = (app)=>{
-    app.get("/vr/api/v1/users/getUsers", UsersController.getAllUsers)
+    app.get("/vr/api/v1/users/getUsers",[authJwt.verifyToken], UsersController.getAllUsers)
 }
