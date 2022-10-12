@@ -1,4 +1,8 @@
-module.exports = {
-    secret : "sri=ram=sai"
-  }
   
+require("dotenv").config();
+
+module.exports = {
+    secret : process.env.SECRET
+  }
+
+

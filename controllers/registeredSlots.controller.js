@@ -19,7 +19,7 @@ exports.registeredSlots = async (req, res)=>{
         query["date"] = d.toDateString();
     }
     if(req.query.firstDose){
-        query["firstDose"] = req.query.firstDose
+        query["firstDose"] = req.query.firstDose.toString()
     }
     if(req.query.secondDose){
         query["secondDose"] = req.query.secondDose
