@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
-
+const {DB_URL} = require("./configs/db.config");
 //slots(document)
 //
+
+
 const slotSchema = new mongoose.Schema({
   date: String,
   time: String,
@@ -23,9 +25,7 @@ const slotModel = mongoose.model("slot", slotSchema);
 
 async function main() {
   try {
-    await mongoose.connect(
-        "mongodb+srv://kiranSai:0fiN1h8yYM8F8OJK@vaccineregistration.sksuuit.mongodb.net/vaccineRegistration"
-        );
+    await mongoose.connect(DB_URL);
     console.log("connected");
     for (let i = 1; i<22; i++) {
         const date = new Date(`${i} Jun 2022`);
