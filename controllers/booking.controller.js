@@ -22,7 +22,7 @@ exports.booking = async (req, res)=>{
         
         let user =  await User.findOne({_id: req.userId});
         user.slotsBooked.push(slot._id);
-        user.doseBooked = req.body.dose
+        user.doseBooked = req.body.doseBooked
         await user.save();
 
         slot.availableSlots = slot.availableSlots-1;

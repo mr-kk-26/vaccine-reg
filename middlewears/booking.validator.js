@@ -17,7 +17,7 @@ const validateBooking = async (req, res, next)=>{
 
     // checking if the dose is provided or not in the req.body
     
-    if(!req.body.dose){
+    if(!req.body.doseBooked){
         res.status(500).send({
             message: "dose is not mentioned "
         })
@@ -40,7 +40,7 @@ const validateBooking = async (req, res, next)=>{
 
     // checking  the user is already vaccinated or not for the first dose
 
-    if(user.doseTaken.firstDose == constants.doseTypes.firstDose && req.body.dose == constants.doseTypes.firstDose){
+    if(user.doseTaken.firstDose == constants.doseTypes.firstDose && req.body.doseBooked == constants.doseTypes.firstDose){
         res.status(400).send({
             message: "First dose already taken"
         })
@@ -55,7 +55,7 @@ const validateBooking = async (req, res, next)=>{
 
     // checking  the user is already vaccinated or not for the second dose
 
-    if(user.doseTaken.secondDose == constants.doseTypes.secondDose && req.body.dose == constants.doseTypes.secondDose){
+    if(user.doseTaken.secondDose == constants.doseTypes.secondDose && req.body.doseBooked == constants.doseTypes.secondDose){
         res.status(400).send({
             message: "Second dose already taken"
         })
