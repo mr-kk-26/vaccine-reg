@@ -1,3 +1,7 @@
+/**  run this to create slots in the db
+*/
+
+
 const mongoose = require("mongoose");
 const {DB_URL} = require("./configs/db.config");
 //slots(document)
