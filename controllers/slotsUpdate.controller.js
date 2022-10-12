@@ -7,7 +7,7 @@ exports.updateSlots = async (req, res)=>{
 
     try{
     
-        const slot = await Slots.findOne({_id : req.params._id});
+        const slot = await Slots.findOne({_id : req.body.oldSlot});
 
         // this code checks if the slot is still before one day before to update
         
@@ -15,10 +15,13 @@ exports.updateSlots = async (req, res)=>{
         date.setDate(date.getDate()+1)
 
         if(slot.date >= date.toDateString()){
-        
+            return res.status(400).send({
+                message: "Time limit exceeded to change the slot"
+            })
+        }
         // undoing all the previous bookings
 
-    let user = User.findOne({_id: req.userId});
+    let user = await User.findOne({_id: req.userId});
 
         slot.availableSlots = slot.availableSlots+1
         if(user.doseBooked == "first dose"){
@@ -30,40 +33,47 @@ exports.updateSlots = async (req, res)=>{
 
     user.slotsBooked = [];
     user.doseBooked = "no";
-    await user.save();
+
     
 
    
-    }
+    
 
-      // ichecking the user is taken first dose or not before booking him a slot for second dose
-      let user = User.findOne({_id: req.userId})
-      if(req.body.doseBooked == constants.doseTypes.secondDose && !user.doseTaken){
+      // checking the user is taken first dose or not before booking him a slot for second dose
+    
+      if(req.body.doseBooked == constants.doseTypes.secondDose && user.doseTaken.firstDose == "no"){
         res.status(500).send({
             message: "you have not taken first dose"
         })
     }
 
          //  creating new Booking
-        
-        
-        user.slotsBooked.push(slot._id);
+        let newSlot = await Slots.findOne({_id: req.body.newSlot})
+        console.log("----------------", newSlot._id);
+        user.slotsBooked.push(newSlot._id);
         user.doseBooked = req.body.doseBooked ? req.body.doseBooked : "no"
-        await user.save();
+        
 
-        slot.availableSlots = slot.availableSlots-1;
+        newSlot.availableSlots = newSlot.availableSlots-1;
+       
         if(user.doseBooked == "first dose"){
-            slot.firstDose = slot.firstDose+1
+            newSlot.firstDose = newSlot.firstDose+1
+
         }
         if(user.doseBooked == "second dose"){
-            slot.secondDose = slot.secondDose+1
+            newSlot.secondDose = newSlot.secondDose+1
+            
         }
-        await slot.save();
+        await user.save()
+        await slot.save()
+        
+  
 
     res.status(200).send({
         message: "slot booked sucessfully",
-        slotId: slot._id,
+        slotId: newSlot._id,
     })
+
 
 }catch(err){
     console.log(err.message);

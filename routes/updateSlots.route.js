@@ -9,5 +9,5 @@ const updateController = require("../controllers/slotsUpdate.controller");
 const {authJwt} = require("../middlewears")
 
 module.exports = (app)=>{
-    app.put("/vr/api/v1/slots/update/:_id",[authJwt.verifyToken], updateController.updateSlots)
+    app.put("/vr/api/v1/slots/update",[authJwt.verifyToken], updateController.updateSlots)
 }

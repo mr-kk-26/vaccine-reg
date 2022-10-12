@@ -21,7 +21,7 @@ const verifyToken = (req, res, next) => {
 jwt.verify(token, authConfig.secret, (err, decoded) =>{
   if(err){
     return res.status(401).send({
-      message : "UnAuthorized ! "
+      message : "UnAuthorized wrong Token! "
     })
   }
   req.userId = decoded.id; // I am taking the user Id from token and setting it in request object

@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
         enum: [constants.doseTypes.firstDose, constants.doseTypes.secondDose, constants.doseTypes.no],
         default: "no"
     },
-    doseTaken: [{
+    doseTaken: {
             firstDose: {
                 type: String,
                 enum: ["yes", "no"],
@@ -59,7 +59,7 @@ const userSchema = new mongoose.Schema({
                 default: "no"
             
     }
-}]
+}
 })
 
 
