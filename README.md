@@ -5,6 +5,13 @@ built on mvc architecture
 Nodejs
 express
 
+add a .env file 
+
+with  :   PORT
+          DB_URL
+          SECRET
+
+
 
 
 TO start the application
