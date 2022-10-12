@@ -5,6 +5,15 @@ built on mvc architecture
 Nodejs
 express
 
+RUN the slots.js before running the app to create slots in db
+
+add a .env file 
+
+with  :   PORT,
+          DB_URL,
+          SECRET-----for---jwt
+
+
 
 
 TO start the application
