@@ -31,10 +31,10 @@ async function main() {
   try {
     await mongoose.connect(DB_URL);
     console.log("connected");
-    for (let i = 1; i<22; i++) {
+    for (let i = 1; i<=30; i++) {
         const date = new Date(`${i} Jun 2022`);
         for (let j = 0; j <14; j++) {
-            //time slots 10:30 - 11:30, 12:30 - 1:30 , 2:30 - 3:30
+            //time slots 10:00 - 10:30, 10:30 - 11:00, 11:00 - 11:30, 11:30 - 12:00, 12:00 - 12:30, 12:30 - 1:00, 1:00 - 1:30, 1:30 - 2:00, 2:00 - 2:30, 2:30 - 3:00, 3:00 - 3:30, 3:30 - 4:00, 4:00 - 4:30, 4:30 - 5:00
             let time;
             switch (j) {
                 case 0:

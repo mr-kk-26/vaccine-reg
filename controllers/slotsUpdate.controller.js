@@ -35,7 +35,7 @@ exports.updateSlots = async (req, res)=>{
               arr.splice(index, 1);
             }
           });
-        
+        await slot.save()
 
     user.slotsBooked = [];
     user.doseBooked = "no";
@@ -59,7 +59,7 @@ exports.updateSlots = async (req, res)=>{
         user.slotsBooked.push(newSlot._id);
         user.doseBooked = req.body.doseBooked ? req.body.doseBooked : "no"
         
-
+    console.log(newSlot.availableSlots);
         newSlot.availableSlots = newSlot.availableSlots-1;
        
         if(user.doseBooked == "first dose"){
@@ -72,7 +72,7 @@ exports.updateSlots = async (req, res)=>{
         }
         newSlot.userBooked.push(user._id)
         await user.save()
-        await slot.save()
+        await newSlot.save()
         
   
 

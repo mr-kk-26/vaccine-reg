@@ -6,7 +6,7 @@ const validateSignup = async (req, res, next)=>{
     // checking the name is provided or not
 
     if(!req.body.name){
-        res.status(400).send({
+        return res.status(400).send({
             message: "Name is not provided"
         })
     }
@@ -14,7 +14,7 @@ const validateSignup = async (req, res, next)=>{
     // checking the password is provided or not
 
     if(!req.body.password){
-        res.status(400).send({
+        return res.status(400).send({
             message: "password is not provided"
         })
     }
@@ -22,7 +22,7 @@ const validateSignup = async (req, res, next)=>{
     // checking the password is provided or not
 
     if(!req.body.phoneNumber){
-        res.status(400).send({
+        return res.status(400).send({
             message: "phone number is not provided"
         })
     }
@@ -30,7 +30,7 @@ const validateSignup = async (req, res, next)=>{
     // checking the age is provided or not
 
     if(!req.body.age){
-        res.status(400).send({
+        return res.status(400).send({
             message: "age is not provided"
         })
     }
@@ -38,7 +38,7 @@ const validateSignup = async (req, res, next)=>{
     // checking the pincode is provided or not
 
     if(!req.body.pincode){
-        res.status(400).send({
+        return res.status(400).send({
             message: "pincode is not provided"
         })
     }
@@ -46,7 +46,7 @@ const validateSignup = async (req, res, next)=>{
     /// checking the aadhar is provided or not
 
     if(!req.body.aadhar_No){
-        res.status(400).send({
+        return res.status(400).send({
             message: "aadhar No is not provided"
         })
     }
@@ -58,7 +58,7 @@ const validateSignup = async (req, res, next)=>{
         const phoneNumber = await User.findOne({phoneNumber: req.body.phoneNumber})
 
         if(phoneNumber != null){
-            res.status(400).send({
+            return res.status(400).send({
                 message: "Failed phone no already exists"
             })
         }
@@ -68,7 +68,7 @@ const validateSignup = async (req, res, next)=>{
         const aadhar_No = await User.findOne({aadhar_No: req.body.aadhar_No});
 
         if(aadhar_No != null){
-            res.status(400).send({
+            return res.status(400).send({
                 message: "Failed Aadhar no already exists"
             })
         }
@@ -94,7 +94,7 @@ const validateSignin = async (req, res, next)=>{
     // checking if the password is provided or not
 
     if(!req.body.password){
-        res.status(400).send({
+        return res.status(400).send({
             message: "password is not provided"
         })
     }
@@ -102,7 +102,7 @@ const validateSignin = async (req, res, next)=>{
     // checking if the phone number is provided or not
 
     if(!req.body.phoneNumber){
-        res.status(400).send({
+        return res.status(400).send({
             message: "phone no not provided"
         })
     }

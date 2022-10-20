@@ -82,19 +82,7 @@ const validateBooking = async (req, res, next)=>{
 
 
 
-    // If the slot booked date is completed the user will be automatically considered as vaccinated
-
-    let date = new Date();
-        date.setDate(date.getDate()+1)
-    if(slot.date < date.toDateString()){
-        if(slot.doseBooked == constants.doseTypes.firstDose){
-            user.doseTaken.push("first dose")
-        }
-        if(slot.doseBooked == constants.doseTypes.secondDose){
-            user.doseTaken.push("second dose")
-        }
-    }
-    
+   
     next()
 }
 

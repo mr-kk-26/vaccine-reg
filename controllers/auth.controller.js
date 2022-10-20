@@ -12,6 +12,7 @@ const bcrypt = require('bcrypt');
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const authConfig = require("../configs/auth.config");
+const Slots = require("../models/slots.model");
 
 
 
@@ -87,7 +88,12 @@ exports.signin = async (req, res)=>{
         // fetching the user from the db from the provided phone number
 
         const user = await User.findOne({phoneNumber: req.body.phoneNumber});
-        console.log(user);
+      
+
+
+
+         
+
 
         // checking wheather the user registered or not
 
@@ -106,6 +112,25 @@ exports.signin = async (req, res)=>{
                 message: "wrong password"
             });
         }
+
+
+        // If the slot booked date is completed the user will be automatically considered as vaccinated
+
+        let date = new Date();
+        date.setDate(date.getDate()+1)
+        let slot = await Slots.findOne({slotsBooked :user.slotsBooked})
+    if(slot.date < date.toDateString()){
+        if(user.doseBooked == constants.doseTypes.firstDose){
+            user.doseTaken.push("first dose");
+            user.doseBooked = "no"
+        }
+        if(user.doseBooked == constants.doseTypes.secondDose){
+            user.doseTaken.push("second dose");
+            user.doseBooked = "no"
+        }
+        await user.save()
+        
+    }
         
         // creating a jwt token // after sucessful login jwt token provided by user is only used for further authorization
         
